@@ -1,6 +1,6 @@
 {
   "name": "create-excalibur",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "ExcaliburJS starter",
   "main": "index.js",
   "type": "module",
