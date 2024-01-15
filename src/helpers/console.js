@@ -9,7 +9,7 @@ export function info(message) {
 export function warn(message) {
   log(customChalk.yellow(message));
 }
-export function error(message) {
+export function alert(message) {
   log(customChalk.bgRed(message));
 }
 export function success(message) {

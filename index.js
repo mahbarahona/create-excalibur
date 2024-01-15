@@ -6,20 +6,11 @@ import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 
 //
-import { info, log, success, warn, error } from './src/console.js';
-import create_project_resource from './src/create_projects.js';
-import { execSync } from 'child_process';
-
-function run_command(command) {
-  try {
-    execSync(`${command}`, { stdio: 'inherit' });
-  } catch (e) {
-    error(`Failed to execute ${command}.`);
-    log(e);
-    return false;
-  }
-  return true;
-}
+import { action_intro } from './src/actions/intro.js';
+import { action_create_project } from './src/actions/create_project.js';
+import { action_install_dependencies } from './src/actions/dependencies.js';
+import { action_init_repo } from './src/actions/init_repo.js';
+import { action_outro } from './src/actions/outro.js';
 
 const CURRENT_DIRECTORY = process.cwd();
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -46,47 +37,34 @@ const QUESTIONS = [
     type: 'confirm',
     message: 'Install dependencies?',
   },
+  {
+    name: 'init-repo',
+    type: 'confirm',
+    message: 'Initialize respository?',
+  },
 ];
 
 // INTRO
-log(`
-      /| ________________
-O|===|* >________________>
-      \\|
-`);
-info('Welcome to Excalibur JS! ');
-log('2D Games made Easy for the Web');
-log('');
+action_intro();
 
 inquirer.prompt(QUESTIONS).then((user_inputs) => {
   const selected_template = user_inputs['project-template'];
   const project_name = user_inputs['project-name'];
   const install_dependencies = user_inputs['dependencies'];
+  const init_repo = user_inputs['init-repo'];
   //
   const template_path = `${__dirname}/src/templates/${selected_template}`;
   fs.mkdirSync(`${CURRENT_DIRECTORY}/${project_name}`);
 
-  // CREATE_PROJECT
-  log(`Creating project....`);
-  create_project_resource(template_path, project_name);
+  action_create_project(template_path, project_name);
 
-  log('');
-  success(`Project created at ./${project_name}`);
-  log('');
-
-  // INSTALL_DEPENDENCIES
   if (install_dependencies) {
-    const installed = run_command(`cd ${project_name} && npm i`);
-    if (installed) {
-      log('Dependenies installed.');
-    } else {
-      error('Unable to install dependencies');
-    }
+    action_install_dependencies(project_name);
   }
 
-  // COMPLETED
-  log('');
-  success('Ready!');
-  warn(`- go to your project:  cd ${project_name}`);
-  warn(`- and start coding! : npm run dev`);
+  if (init_repo) {
+    action_init_repo(project_name);
+  }
+
+  action_outro(project_name);
 });

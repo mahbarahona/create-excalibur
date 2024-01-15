@@ -1,4 +1,4 @@
-import { log } from './console.js';
+import { log, success } from '../helpers/console.js';
 import * as fs from 'fs';
 
 const CURRENT_DIRECTORY = process.cwd();
@@ -18,6 +18,20 @@ function create_project_resource(target_path, project_name) {
       );
     } else if (resource_stats.isFile()) {
       //
+      if (resource === 'gitignore') {
+        resource = '.gitignore';
+      } else if (resource === 'package.json') {
+        const package_json = JSON.parse(
+          fs.readFileSync(`${target_path}/package.json`, 'utf-8')
+        );
+        package_json.name = project_name;
+        fs.writeFileSync(
+          `${target_path}/package.json`,
+          JSON.stringify(package_json, null, 2),
+          'utf-8'
+        );
+      }
+
       const file_content = fs.readFileSync(resource_path, 'utf-8');
       const write_path = `${CURRENT_DIRECTORY}/${project_name}/${resource}`;
       fs.writeFileSync(write_path, file_content, 'utf-8');
@@ -27,4 +41,10 @@ function create_project_resource(target_path, project_name) {
   });
 }
 
-export default create_project_resource;
+export function action_create_project(template_path, project_name) {
+  log(`Creating project....`);
+  create_project_resource(template_path, project_name);
+  log('');
+  success(`Project created at ./${project_name}`);
+  log('');
+}
