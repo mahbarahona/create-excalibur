@@ -1,4 +1,4 @@
-import { log, success } from '../helpers/console.js';
+import { log } from '../helpers/console.js';
 import * as fs from 'fs';
 
 const CURRENT_DIRECTORY = process.cwd();
@@ -35,16 +35,12 @@ function create_project_resource(target_path, project_name) {
       const file_content = fs.readFileSync(resource_path, 'utf-8');
       const write_path = `${CURRENT_DIRECTORY}/${project_name}/${resource}`;
       fs.writeFileSync(write_path, file_content, 'utf-8');
-
-      log(write_path);
     }
   });
 }
 
 export function action_create_project(template_path, project_name) {
-  log(`Creating project....`);
+  // log(`Creating project....`);
   create_project_resource(template_path, project_name);
-  log('');
-  success(`Project created at ./${project_name}`);
-  log('');
+  log('🪄 created.');
 }
