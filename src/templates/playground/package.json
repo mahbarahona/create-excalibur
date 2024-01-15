@@ -10,7 +10,8 @@
   },
   "devDependencies": {
     "typescript": "^5.2.2",
-    "vite": "^5.0.8"
+    "vite": "^5.0.8",
+    "@excaliburjs/dev-tools": "^0.28.0"
   },
   "dependencies": {
     "excalibur": "^0.28.5"

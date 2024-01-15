@@ -1,3 +1,4 @@
+import { DevTool } from '@excaliburjs/dev-tools';
 import { Actor, CollisionType, Color, Engine, vec } from 'excalibur';
 
 // [CREATE_GAME]
@@ -136,5 +137,9 @@ function create_paddle() {
 //
 export const breakout_game = {
   game,
-  start_game: () => game.start(),
+  start_game: (debug = true) => {
+    if (debug) new DevTool(game);
+
+    game.start();
+  },
 };
