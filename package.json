@@ -2,7 +2,7 @@
   "name": "create-excalibur",
   "version": "1.0.0",
   "description": "ExcaliburJS starter",
-  "main": "src/index.js",
+  "main": "/src/index.js",
   "type": "module",
   "bin": {
     "create-excalibur": "./src/index.js"
@@ -18,6 +18,7 @@
   "license": "MIT",
   "dependencies": {
     "@babel/core": "^7.23.7",
+    "chalk": "^5.3.0",
     "inquirer": "^9.2.12"
   }
 }
