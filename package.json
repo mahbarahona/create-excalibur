@@ -1,0 +1,23 @@
+{
+  "name": "create-excalibur",
+  "version": "1.0.0",
+  "description": "ExcaliburJS starter",
+  "main": "src/index.js",
+  "type": "module",
+  "bin": {
+    "create-excalibur": "./src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mahbarahona/create-excalibur.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "manuhb",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/core": "^7.23.7",
+    "inquirer": "^9.2.12"
+  }
+}
