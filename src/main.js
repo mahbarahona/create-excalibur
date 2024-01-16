@@ -10,11 +10,11 @@ const PROJECTS = [
     value: 'typescript',
     description: '[ TS starter template ]',
   },
-  {
-    name: 'Javascript',
-    value: 'javascript',
-    description: '[ JS starter template ]',
-  },
+  // {
+  //   name: 'Javascript',
+  //   value: 'javascript',
+  //   description: '[ JS starter template ]',
+  // },
 ];
 
 async function main() {
