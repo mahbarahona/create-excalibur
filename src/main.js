@@ -6,11 +6,6 @@ import { actions } from './actions/actions.js';
 
 const PROJECTS = [
   {
-    name: 'Playground',
-    value: 'playground',
-    description: '[ Discover all you can do ]',
-  },
-  {
     name: 'Typescript',
     value: 'typescript',
     description: '[ TS starter template ]',
