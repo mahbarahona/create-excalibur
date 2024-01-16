@@ -6,7 +6,6 @@ import {
   Engine,
   ImageSource,
   Loader,
-  Resource,
   SpriteSheet,
   range,
   vec,
@@ -142,7 +141,7 @@ function create_ball() {
       ball.vel.x = ball_speed.x * -1 + Math.random();
     }
   });
-  ball.on('pointerdown', function (evt) {
+  ball.on('pointerdown', function () {
     ball.kill();
   });
 
